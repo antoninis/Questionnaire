@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Admin page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal" href="#">Редактирование анкеты</h5>
+    <a th:href="@{/home}">Назад</a>
+</div>
+<div class="container">
+    <div class="my-0 mr-md-auto">
+        <h5>Итоговая анкета</h5>
+        <small>Полный список вопросов и ответы анкеты</small><br>
+        <tr th:each="post : ${posts}"><br>
+            <td th:text="${post.id}"/></td>
+            <td th:text="${post.question}"/></td><br>
+            <td th:text="${post.answer1}"/></td><br>
+            <td th:text="${post.answer2}"/></td><br>
+            <td th:text="${post.answer3}"/></td><br>
+        </tr><br>
+        <a th:href="@{/admin/edit}" class="btn btn-success">Изменить вопросы</a><br>
+    </div><br>
+
+    <form method="post">
+        <h5>Добавление нового вопроса</h5>
+        <small>Введите вопрос и возможные варианты ответа на него</small><br>
+        <textarea type="text" name="question" placeholder="Введите вопрос"
+                      class="form-control"/></textarea><br>
+        <input type="text" name="answer1"/><br>
+        <br>
+        <input type="text" name="answer2"/><br>
+        <br>
+        <input type="text" name="answer3"/><br>
+        <br>
+        <button type="submit" class="btn btn-success">Добавить</button>
+    </form><br>
+
+    <div class="my-0 mr-md-auto">
+        <h5>Удалить вопрос</h5>
+        <small>Введите номер вопроса, который хотите удалить</small><br>
+        <form th:action="@{/admin/delete}" method="post">
+            <input type="text" name="number"/><br><br>
+            <button type="submit" class="btn btn-success">Удалить</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

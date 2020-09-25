@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal" href="#">Редактирование анкеты</h5>
+    <a th:href="@{/admin}">Назад</a>
+</div>
+
+<form method="post">
+    <div class="container my-0 mr-md-auto">
+        <h5>Итоговая анкета</h5>
+
+        <tr th:each="post : ${posts}"><br>
+            <td th:text="${post.id}"/><a>. Вопрос:</a>
+            <textarea th:text="${post.question}" name="question" class="form-control"/><br>
+            <input type="text" th:value="${post.answer1}" name="answer1" class="form-control"/><br>
+            <input type="text" th:value="${post.answer2}" name="answer2" class="form-control"/><br>
+            <input type="text" th:value="${post.answer3}" name="answer3" class="form-control"/><br>
+        </tr>
+        <button type="submit" class="btn btn-success">Принять изменения</button>
+        <br>
+    </div>
+</form>
+
+</body>
+</html>
